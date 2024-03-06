@@ -35,6 +35,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Rotation"",
+                    ""type"": ""Value"",
+                    ""id"": ""908506fa-37ff-404a-bf0f-f57c6720885d"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -92,6 +101,17 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1dd30fd9-8b13-4345-b672-4b67b63f0d27"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -101,6 +121,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         // GamePlay
         m_GamePlay = asset.FindActionMap("GamePlay", throwIfNotFound: true);
         m_GamePlay_Movement = m_GamePlay.FindAction("Movement", throwIfNotFound: true);
+        m_GamePlay_Rotation = m_GamePlay.FindAction("Rotation", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -163,11 +184,13 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_GamePlay;
     private List<IGamePlayActions> m_GamePlayActionsCallbackInterfaces = new List<IGamePlayActions>();
     private readonly InputAction m_GamePlay_Movement;
+    private readonly InputAction m_GamePlay_Rotation;
     public struct GamePlayActions
     {
         private @InputSystem m_Wrapper;
         public GamePlayActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_GamePlay_Movement;
+        public InputAction @Rotation => m_Wrapper.m_GamePlay_Rotation;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -180,6 +203,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
+            @Rotation.started += instance.OnRotation;
+            @Rotation.performed += instance.OnRotation;
+            @Rotation.canceled += instance.OnRotation;
         }
 
         private void UnregisterCallbacks(IGamePlayActions instance)
@@ -187,6 +213,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
+            @Rotation.started -= instance.OnRotation;
+            @Rotation.performed -= instance.OnRotation;
+            @Rotation.canceled -= instance.OnRotation;
         }
 
         public void RemoveCallbacks(IGamePlayActions instance)
@@ -207,5 +236,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     public interface IGamePlayActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnRotation(InputAction.CallbackContext context);
     }
 }

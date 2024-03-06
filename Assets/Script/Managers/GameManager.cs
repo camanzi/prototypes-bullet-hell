@@ -9,16 +9,14 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            if (_instanse)
-                return _instanse;
-            _instanse = FindFirstObjectByType<GameManager>();
-            if (!_instanse)
+            if (_instance)
+                return _instance;
+            _instance = FindFirstObjectByType<GameManager>();
+            if (!_instance)
                 Debug.LogError("Missing GameManager");
-            return _instanse;
+            return _instance;
         }
     }
 
-    private static GameManager _instanse;
-
-    public PlayerMovement playerMovement;
+    private static GameManager _instance;
 }

@@ -49,18 +49,18 @@ public class GameStateManager : MonoBehaviour
         registeredGameStates.Add(gstate, state);
     }
 
-    [SerializeField] private GameStates currentGameState;
+    [SerializeField] private GameStates _currentGameState;
 
     public GameStates CurrentGameState
     {
         get
         {
-            return currentGameState;
+            return _currentGameState;
         }
         set
         {
             CurrentIGameState?.OnStateExit();
-            currentGameState = value;
+            _currentGameState = value;
             CurrentIGameState.OnStateEnter();
         }
     }
@@ -68,7 +68,7 @@ public class GameStateManager : MonoBehaviour
     {
         get
         {
-            return registeredGameStates[currentGameState];
+            return registeredGameStates[_currentGameState];
         }
     }
 
