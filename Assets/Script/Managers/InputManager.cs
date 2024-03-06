@@ -15,23 +15,6 @@ public class InputManager : MonoBehaviour
     }
     private static InputSystem _inputSystem;
 
-    private void Awake()
-    {
-        //InputSystem.GamePlay.Pause.performed += PauseGame;
-
-        //InputSystem.Pause.Resume.performed += ResumeGame;
-    }
-
-    private void ResumeGame(InputAction.CallbackContext context)
-    {
-        //GameStateManager.Instance.CurrentGameState = GameStateManager.GameStates.Gameplay;
-    }
-
-    private void PauseGame(InputAction.CallbackContext context)
-    {
-        //GameStateManager.Instance.CurrentGameState = GameStateManager.GameStates.Pause;
-    }
-
     #region GAMEPLAY INPUTS
     public static bool invertedX, invertedY, invertRotaion;
     public static Vector2 movementInput()
