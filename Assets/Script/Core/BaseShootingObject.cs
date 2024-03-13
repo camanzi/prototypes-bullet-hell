@@ -8,6 +8,6 @@ public class BaseShootingObject : MonoBehaviour, IShooting
     public BaseShootableObject projectile;
     public void shoot(Transform shooterTransform, Vector2 direction)
     {
-        GameObject.Instantiate<BaseShootableObject>(projectile, shooterTransform.position, shooterTransform.rotation, shooterTransform.root);
+        GameObject.Instantiate<BaseShootableObject>(projectile, shooterTransform.position, shooterTransform.rotation, null);
     }
 }
