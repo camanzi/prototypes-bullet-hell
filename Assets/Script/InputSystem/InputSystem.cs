@@ -47,12 +47,30 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Shooting"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""6f36c28e-1ec3-4cda-8fec-324420636646"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DropWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""c3c37ae0-f154-4232-8ad8-7396c076b429"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CollectWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""1ee9e04b-a584-4b7d-9809-671fdf4592bd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -132,6 +150,28 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""Shooting"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f887edf7-3c83-4760-bef4-878d8d3a6430"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DropWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""241fa884-2934-4b8e-acbf-3a42d0b6ae5e"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CollectWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -143,6 +183,8 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_GamePlay_Movement = m_GamePlay.FindAction("Movement", throwIfNotFound: true);
         m_GamePlay_Rotation = m_GamePlay.FindAction("Rotation", throwIfNotFound: true);
         m_GamePlay_Shooting = m_GamePlay.FindAction("Shooting", throwIfNotFound: true);
+        m_GamePlay_DropWeapon = m_GamePlay.FindAction("DropWeapon", throwIfNotFound: true);
+        m_GamePlay_CollectWeapon = m_GamePlay.FindAction("CollectWeapon", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -207,6 +249,8 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay_Movement;
     private readonly InputAction m_GamePlay_Rotation;
     private readonly InputAction m_GamePlay_Shooting;
+    private readonly InputAction m_GamePlay_DropWeapon;
+    private readonly InputAction m_GamePlay_CollectWeapon;
     public struct GamePlayActions
     {
         private @InputSystem m_Wrapper;
@@ -214,6 +258,8 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_GamePlay_Movement;
         public InputAction @Rotation => m_Wrapper.m_GamePlay_Rotation;
         public InputAction @Shooting => m_Wrapper.m_GamePlay_Shooting;
+        public InputAction @DropWeapon => m_Wrapper.m_GamePlay_DropWeapon;
+        public InputAction @CollectWeapon => m_Wrapper.m_GamePlay_CollectWeapon;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -232,6 +278,12 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @Shooting.started += instance.OnShooting;
             @Shooting.performed += instance.OnShooting;
             @Shooting.canceled += instance.OnShooting;
+            @DropWeapon.started += instance.OnDropWeapon;
+            @DropWeapon.performed += instance.OnDropWeapon;
+            @DropWeapon.canceled += instance.OnDropWeapon;
+            @CollectWeapon.started += instance.OnCollectWeapon;
+            @CollectWeapon.performed += instance.OnCollectWeapon;
+            @CollectWeapon.canceled += instance.OnCollectWeapon;
         }
 
         private void UnregisterCallbacks(IGamePlayActions instance)
@@ -245,6 +297,12 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @Shooting.started -= instance.OnShooting;
             @Shooting.performed -= instance.OnShooting;
             @Shooting.canceled -= instance.OnShooting;
+            @DropWeapon.started -= instance.OnDropWeapon;
+            @DropWeapon.performed -= instance.OnDropWeapon;
+            @DropWeapon.canceled -= instance.OnDropWeapon;
+            @CollectWeapon.started -= instance.OnCollectWeapon;
+            @CollectWeapon.performed -= instance.OnCollectWeapon;
+            @CollectWeapon.canceled -= instance.OnCollectWeapon;
         }
 
         public void RemoveCallbacks(IGamePlayActions instance)
@@ -267,5 +325,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnRotation(InputAction.CallbackContext context);
         void OnShooting(InputAction.CallbackContext context);
+        void OnDropWeapon(InputAction.CallbackContext context);
+        void OnCollectWeapon(InputAction.CallbackContext context);
     }
 }

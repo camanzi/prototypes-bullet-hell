@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
 
     public float movementSpeed = 20;
+    public LayerMask wallLayer;
 
     private void Update()
     {
@@ -15,14 +17,14 @@ public class PlayerMovement : MonoBehaviour
 
     public void move(Vector2 direction)
     {
-        transform.position += new Vector3(direction.x, direction.y, 0) * movementSpeed * Time.deltaTime;
+        if (!Physics2D.Raycast(transform.position, direction, 0.7f, wallLayer))
+        {
+            transform.position += new Vector3(direction.x, direction.y, 0) * movementSpeed * Time.deltaTime;
+        }
     }
 
     public void rotate(Vector2 direction)
     {
-        //Da chiedere al prof, come mai non va con l'input del InputSystem
-        //direction = Camera.main.ViewportToScreenPoint(direction);
-
         direction = Input.mousePosition;
 
         Vector3 targetDirection = new Vector3(direction.x, direction.y, 0);
