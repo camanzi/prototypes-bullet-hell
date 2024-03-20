@@ -12,11 +12,13 @@ public class CollectableObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!enabled) return;
+
         controller = collision.GetComponent<ShooterController>();
-        collectorTransform = collision.transform;
 
         if (controller.equippedWeapon?.GetGameObject() != gameObject) 
         { 
+            collectorTransform = collision.transform;
             InputManager.InputSystem.GamePlay.CollectWeapon.performed += equip;
         }
     }
@@ -32,8 +34,8 @@ public class CollectableObject : MonoBehaviour
         IShooting collectedWeapon = gameObject.GetComponent<IShooting>();
 
         collectedWeapon.GetTransform().position = collectorTransform.position;
-        collectorTransform.rotation = collectorTransform.rotation;
-        
+        collectedWeapon.GetTransform().rotation = collectorTransform.rotation;
+
         collectedWeapon.GetTransform().SetParent(collectorTransform);
         controller.equippedWeapon = collectedWeapon;
     }

@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 
 public class ShooterController : MonoBehaviour
 {
-    public IShooting equippedWeapon 
+    public string defaultWeaponLayer;
+    public IShooting equippedWeapon
     {
         get { return _equippedWeapon; }
         set
@@ -15,31 +16,49 @@ public class ShooterController : MonoBehaviour
     }
 
     private IShooting _equippedWeapon;
+    private LayerMask _bulletsLayer;
 
     private void Awake()
     {
         InputManager.InputSystem.GamePlay.Shooting.performed += shoot;
         InputManager.InputSystem.GamePlay.DropWeapon.performed += drop;
+        _bulletsLayer = gameObject.layer + 1;
     }
 
     private void Start()
     {
         equippedWeapon = gameObject.GetComponentInChildren<IShooting>();
     }
+    public void shoot() 
+    {
+        _equippedWeapon?.shoot(_equippedWeapon.GetTransform(), _bulletsLayer);
+    }
 
     private void shoot(InputAction.CallbackContext context)
     {
-        _equippedWeapon?.shoot(_equippedWeapon.GetTransform());
+        shoot();
     }
 
-    private void drop(InputAction.CallbackContext context)
+
+    public void drop(InputAction.CallbackContext context)
     {
         changeWeapon(null);
     }
 
     private void changeWeapon(IShooting newWeapon) 
     {
-        _equippedWeapon?.GetTransform().SetParent(null);
+        if (_equippedWeapon != null) 
+        {
+            _equippedWeapon.GetTransform().SetParent(null);
+            _equippedWeapon.GetCollectableScript().enabled = true;
+            _equippedWeapon.GetGameObject().layer = LayerMask.NameToLayer(defaultWeaponLayer);
+        }
         _equippedWeapon = newWeapon;
+
+        if (_equippedWeapon != null) 
+        {
+            _equippedWeapon.GetCollectableScript().enabled = false;
+            _equippedWeapon.GetGameObject().layer = _bulletsLayer;
+        }
     }
 }

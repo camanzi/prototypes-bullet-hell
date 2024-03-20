@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8194751801348928247}
   - component: {fileID: 5359373057970591463}
   - component: {fileID: 2772511411968964773}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: PF_Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e02b5470d888e468335d6ca517be51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 7382828064213458209, guid: 6f8c2ffa054f7c04793c364e42d6b39d, type: 3}
+  projectileToShoot: {fileID: 7382828064213458209, guid: 6f8c2ffa054f7c04793c364e42d6b39d, type: 3}
 --- !u!58 &5359373057970591463
 CircleCollider2D:
   m_ObjectHideFlags: 0

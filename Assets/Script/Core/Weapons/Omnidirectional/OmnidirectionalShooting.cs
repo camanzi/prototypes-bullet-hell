@@ -7,6 +7,7 @@ public class OmnidirectionalShooting : MonoBehaviour, IShooting
 {
 
     public IShooting[] shootingObjects;
+    public CollectableObject collectableScript;
     protected float defaultCooldown = 0.15f;
 
     protected bool isInCooldown = false;
@@ -14,20 +15,26 @@ public class OmnidirectionalShooting : MonoBehaviour, IShooting
     private void Awake()
     {
         shootingObjects = gameObject.GetComponentsInChildren<BaseShootingObject>();
+        collectableScript = gameObject.GetComponent<CollectableObject>();
     }
 
     public void shoot(Transform shooterTransform)
     {
-        shoot(shooterTransform, defaultCooldown);
+        shoot(shooterTransform, 0, defaultCooldown);
     }
 
-    public void shoot(Transform shooterTransform, float cooldown)
+    public void shoot(Transform shooterTransform, LayerMask bulletLayer)
+    {
+        shoot(shooterTransform, bulletLayer, defaultCooldown);
+    }
+
+    public void shoot(Transform shooterTransform, LayerMask bulletLayer, float cooldown)
     {
         if (!isInCooldown) 
         {
             for (int i = 0; i < shootingObjects.Length; i++) 
             {
-                shootingObjects[i].shoot(shootingObjects[i].GetTransform(), 0);
+                shootingObjects[i].shoot(shootingObjects[i].GetTransform(), bulletLayer, 0);
             }
             StartCoroutine(cooldownCoroutine(cooldown));
         }
@@ -43,7 +50,12 @@ public class OmnidirectionalShooting : MonoBehaviour, IShooting
         return gameObject;
     }
 
-    private IEnumerator cooldownCoroutine(float cooldown) 
+    public CollectableObject GetCollectableScript()
+    {
+        return collectableScript;
+    }
+
+    private IEnumerator cooldownCoroutine(float cooldown)
     {
         isInCooldown = true;
         yield return new WaitForSeconds(cooldown);
