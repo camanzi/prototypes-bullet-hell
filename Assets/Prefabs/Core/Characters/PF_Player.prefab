@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6592781594924090738}
   - component: {fileID: 8131347530523131953}
   - component: {fileID: 7074210027478054022}
+  - component: {fileID: 3804921237137486724}
   - component: {fileID: 4860885863093213814}
   - component: {fileID: 3812623486254211554}
   m_Layer: 6
@@ -118,6 +119,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultWeaponLayer: Ground
   useInputSystem: 1
+--- !u!114 &3804921237137486724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2202406936676755587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b50fb1827122c894c91bd942132a4130, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  immunityTimer: 1.5
+  isPlayer: 1
 --- !u!50 &4860885863093213814
 Rigidbody2D:
   serializedVersion: 4
