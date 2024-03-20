@@ -31,7 +31,7 @@ public class GameStateManager : MonoBehaviour
         //Options,
         Gameplay,
         //Pause,
-        //GameOver,
+        GameOver,
     }
     private readonly Dictionary<GameStates, IGameState> registeredGameStates = new();
     public void RegisterAllStates()
@@ -42,7 +42,7 @@ public class GameStateManager : MonoBehaviour
         //RegisterState(GameStates.Options, new GSOptions());
         //RegisterState(GameStates.Pause, new GSPause());
         RegisterState(GameStates.Gameplay, new GSGamePlay());
-        //RegisterState(GameStates.GameOver, new GSGameOver());
+        RegisterState(GameStates.GameOver, new GSGameOver());
     }
     private void RegisterState(GameStates gstate, IGameState state)
     {

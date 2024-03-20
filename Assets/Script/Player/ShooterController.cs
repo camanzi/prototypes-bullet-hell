@@ -34,20 +34,32 @@ public class ShooterController : MonoBehaviour
     {
         equippedWeapon = gameObject.GetComponentInChildren<IShooting>();
     }
+
+    private void OnDestroy()
+    {
+        InputManager.InputSystem.GamePlay.Shooting.performed -= shoot;
+        InputManager.InputSystem.GamePlay.DropWeapon.performed -= drop;
+        drop();
+    }
+
     public void shoot(float cooldown) 
     {
         _equippedWeapon?.shoot(_equippedWeapon.GetTransform(), _bulletsLayer, cooldown);
     }
 
-    private void shoot(InputAction.CallbackContext context)
+    public void shoot(InputAction.CallbackContext context)
     {
         shoot(0);
     }
 
-
     public void drop(InputAction.CallbackContext context)
     {
-        changeWeapon(null);
+        drop();
+    }
+
+    public void drop() 
+    {
+        equippedWeapon = null;
     }
 
     private void changeWeapon(IShooting newWeapon) 

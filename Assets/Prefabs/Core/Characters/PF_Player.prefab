@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultWeaponLayer: Ground
+  useInputSystem: 1
 --- !u!50 &4860885863093213814
 Rigidbody2D:
   serializedVersion: 4

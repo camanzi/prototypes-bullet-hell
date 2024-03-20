@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class BaseShootingObject : MonoBehaviour, IShooting
 {
+    [SerializeField]
+    private BaseShootableObject projectileToShoot;
 
-    public BaseShootableObject projectileToShoot;
-    public CollectableObject collectableScript;
+    private CollectableObject collectableScript;
     protected float defaultCooldown = 0.25f;
 
     protected bool isInCooldown = false;
