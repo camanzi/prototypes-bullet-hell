@@ -4,5 +4,10 @@ using UnityEngine;
 
 public interface IShooting
 {
-    public void shoot(Transform position, Vector2 direction);
+    public void shoot(Transform position, float cooldown);
+    public void shoot(Transform position);
+
+    public Transform GetTransform();
+
+    public GameObject GetGameObject();
 }

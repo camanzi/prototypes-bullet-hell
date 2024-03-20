@@ -15,7 +15,7 @@ public class CollectableObject : MonoBehaviour
         controller = collision.GetComponent<ShooterController>();
         collectorTransform = collision.transform;
 
-        if (controller.equippedWeapon != gameObject) 
+        if (controller.equippedWeapon?.GetGameObject() != gameObject) 
         { 
             InputManager.InputSystem.GamePlay.CollectWeapon.performed += equip;
         }
@@ -29,12 +29,12 @@ public class CollectableObject : MonoBehaviour
 
     private void equip(InputAction.CallbackContext context)
     {
-        BaseShootingObject collectedWeapon = gameObject.GetComponent<BaseShootingObject>();
+        IShooting collectedWeapon = gameObject.GetComponent<IShooting>();
 
-        collectedWeapon.transform.position = collectorTransform.position;
+        collectedWeapon.GetTransform().position = collectorTransform.position;
         collectorTransform.rotation = collectorTransform.rotation;
         
-        collectedWeapon.transform.SetParent(collectorTransform);
+        collectedWeapon.GetTransform().SetParent(collectorTransform);
         controller.equippedWeapon = collectedWeapon;
     }
 }

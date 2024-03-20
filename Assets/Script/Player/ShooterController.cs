@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class ShooterController : MonoBehaviour
 {
-    public BaseShootingObject equippedWeapon 
+    public IShooting equippedWeapon 
     {
         get { return _equippedWeapon; }
         set
@@ -14,7 +14,7 @@ public class ShooterController : MonoBehaviour
         }
     }
 
-    private BaseShootingObject _equippedWeapon;
+    private IShooting _equippedWeapon;
 
     private void Awake()
     {
@@ -24,12 +24,12 @@ public class ShooterController : MonoBehaviour
 
     private void Start()
     {
-        equippedWeapon = gameObject.GetComponentInChildren<BaseShootingObject>();
+        equippedWeapon = gameObject.GetComponentInChildren<IShooting>();
     }
 
     private void shoot(InputAction.CallbackContext context)
     {
-        _equippedWeapon?.shoot(gameObject.transform, gameObject.transform.position);
+        _equippedWeapon?.shoot(_equippedWeapon.GetTransform());
     }
 
     private void drop(InputAction.CallbackContext context)
@@ -37,9 +37,9 @@ public class ShooterController : MonoBehaviour
         changeWeapon(null);
     }
 
-    private void changeWeapon(BaseShootingObject newWeapon) 
+    private void changeWeapon(IShooting newWeapon) 
     {
-        _equippedWeapon?.gameObject.transform.SetParent(null);
+        _equippedWeapon?.GetTransform().SetParent(null);
         _equippedWeapon = newWeapon;
     }
 }
