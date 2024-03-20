@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ShooterController : MonoBehaviour
 {
     public string defaultWeaponLayer;
+    public bool useInputSystem = false;
     public IShooting equippedWeapon
     {
         get { return _equippedWeapon; }
@@ -20,8 +22,11 @@ public class ShooterController : MonoBehaviour
 
     private void Awake()
     {
-        InputManager.InputSystem.GamePlay.Shooting.performed += shoot;
-        InputManager.InputSystem.GamePlay.DropWeapon.performed += drop;
+        if (useInputSystem) 
+        { 
+            InputManager.InputSystem.GamePlay.Shooting.performed += shoot;
+            InputManager.InputSystem.GamePlay.DropWeapon.performed += drop;
+        }
         _bulletsLayer = gameObject.layer + 1;
     }
 
@@ -29,14 +34,14 @@ public class ShooterController : MonoBehaviour
     {
         equippedWeapon = gameObject.GetComponentInChildren<IShooting>();
     }
-    public void shoot() 
+    public void shoot(float cooldown) 
     {
-        _equippedWeapon?.shoot(_equippedWeapon.GetTransform(), _bulletsLayer);
+        _equippedWeapon?.shoot(_equippedWeapon.GetTransform(), _bulletsLayer, cooldown);
     }
 
     private void shoot(InputAction.CallbackContext context)
     {
-        shoot();
+        shoot(0);
     }
 
 

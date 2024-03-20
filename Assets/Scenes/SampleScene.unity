@@ -1332,6 +1332,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7074210027478054022, guid: 8a5f4e88f9f1cfb449e9723a6cbee7cd, type: 3}
+      propertyPath: useInputSystem
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7270070398352356768, guid: 8a5f4e88f9f1cfb449e9723a6cbee7cd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1476,6 +1480,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a0abd89ef4fe294b88e8cd760208df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldown: 1
+--- !u!114 &7270070397884449114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2202406937144515707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937877f93c907e94baa4d4e030115795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 25
 --- !u!1001 &7700139970695427398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1542,6 +1560,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5254786665053842337, guid: 57535d23f046f1a4eb516ba041ce0a08, type: 3}
       insertIndex: 3
       addedObject: {fileID: 7270070397884449113}
+    - targetCorrespondingSourceObject: {fileID: 5254786665053842337, guid: 57535d23f046f1a4eb516ba041ce0a08, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 7270070397884449114}
   m_SourcePrefab: {fileID: 100100000, guid: 57535d23f046f1a4eb516ba041ce0a08, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

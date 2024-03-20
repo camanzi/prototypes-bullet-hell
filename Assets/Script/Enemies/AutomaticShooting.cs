@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class AutomaticShooting : MonoBehaviour
 {
+    public float cooldown = 1f;
     private ShooterController shooterController;
 
     private void Awake()
@@ -14,6 +15,6 @@ public class AutomaticShooting : MonoBehaviour
 
     private void Update()
     {
-        shooterController.shoot();
+        shooterController.shoot(cooldown);
     }
 }

@@ -7,10 +7,11 @@ public class OmnidirectionalShooting : MonoBehaviour, IShooting
 {
 
     public IShooting[] shootingObjects;
-    public CollectableObject collectableScript;
     protected float defaultCooldown = 0.15f;
 
     protected bool isInCooldown = false;
+    
+    private CollectableObject collectableScript;
 
     private void Awake()
     {
