@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject closedDoorMesh;
+
+    [SerializeField]
+    private GameObject openDoorMesh;
 
     private RoomController roomController;
 
@@ -17,11 +22,13 @@ public class Door : MonoBehaviour
 
     private void OnOpenDoorEvent()
     {
-        gameObject.SetActive(false);
+        closedDoorMesh.SetActive(false);
+        openDoorMesh.SetActive(true);
     }
 
     private void OnCloseDoorEvent() 
     {
-        gameObject.SetActive(true);
+        closedDoorMesh.SetActive(true);
+        openDoorMesh.SetActive(false);
     }
 }

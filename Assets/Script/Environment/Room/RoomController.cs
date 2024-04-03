@@ -13,12 +13,16 @@ public class RoomController : MonoBehaviour
     public delegate void closeDoorsEvent();
     public closeDoorsEvent onCloseDoorsEvent;
 
-    private bool doorsHasBeenOpen = false; 
     private void Start()
     {
-        for (int i = 0; i < transform.childCount; i++) 
+        onOpenDoorsEvent?.Invoke();
+    }
+
+    public void checkForEnemies() 
+    {
+        for (int i = 0; i < transform.childCount; i++)
         {
-            if (transform.GetChild(i).TryGetComponent<HealthController>(out HealthController enemyHealthController)) 
+            if (transform.GetChild(i).TryGetComponent<HealthController>(out HealthController enemyHealthController))
             {
                 if (!enemyHealthController.isPlayer)
                     aliveEnemies++;
@@ -27,22 +31,20 @@ public class RoomController : MonoBehaviour
         }
         if (aliveEnemies > 0)
         {
-            onCloseDoorsEvent.Invoke();
+            onCloseDoorsEvent?.Invoke();
         }
-    }
-
-    private void Update()
-    {
-        if (aliveEnemies <= 0 && !doorsHasBeenOpen) 
-        {
-            onOpenDoorsEvent.Invoke();
-            doorsHasBeenOpen = true;
-        } 
+        else { 
+            onOpenDoorsEvent?.Invoke();
+        }
     }
 
     private void onEnemyDeath() 
     {
         aliveEnemies--;
+        if (aliveEnemies <= 0)
+        {
+            onOpenDoorsEvent.Invoke();
+        }
     }
 
 }

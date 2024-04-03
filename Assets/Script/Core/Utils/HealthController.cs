@@ -36,16 +36,15 @@ public class HealthController : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            GameObject.Destroy(gameObject);
-            if( isPlayer) 
+            Destroy(gameObject);
+            if (isPlayer) 
             {
                 GameStateManager.Instance.CurrentGameState = GameStateManager.GameStates.GameOver;
             } else {
                 deathEvent();
             }
-
-            }
-            yield return new WaitForSeconds(immunityTimer);
+        }
+        yield return new WaitForSeconds(immunityTimer);
         isImmune = false;
     }
 }

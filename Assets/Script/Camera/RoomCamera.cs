@@ -7,8 +7,16 @@ public class RoomCamera : MonoBehaviour
     [SerializeField]
     private GameObject virtualCamera;
 
+    private RoomController roomController;
+
+    private void Awake()
+    {
+        roomController = GetComponentInParent<RoomController>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        roomController.checkForEnemies();
         virtualCamera.SetActive(true);
     }
 
