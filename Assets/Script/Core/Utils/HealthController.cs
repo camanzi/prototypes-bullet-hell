@@ -2,18 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class HealthController : MonoBehaviour
 {
+
+    public UnityAction deathEvent;
+
+    public static UnityAction myAction;
+
     [SerializeField]
     private float health = 3f;
 
     [SerializeField]
     private float immunityTimer = 3f;
 
-    [SerializeField]
-    private bool isPlayer = false;
+    public bool isPlayer = false;
 
     private bool isImmune = false;
 
@@ -32,12 +37,15 @@ public class HealthController : MonoBehaviour
         if (health <= 0)
         {
             GameObject.Destroy(gameObject);
-            if (isPlayer) 
+            if( isPlayer) 
             {
                 GameStateManager.Instance.CurrentGameState = GameStateManager.GameStates.GameOver;
+            } else {
+                deathEvent();
             }
-        }
-        yield return new WaitForSeconds(immunityTimer);
+
+            }
+            yield return new WaitForSeconds(immunityTimer);
         isImmune = false;
     }
 }
