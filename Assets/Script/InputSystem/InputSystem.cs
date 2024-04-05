@@ -71,6 +71,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""ba0cc653-615c-4d51-9311-a8c1edb0a1c1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -172,6 +181,17 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""CollectWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a95ccd01-a1eb-426e-b6e0-1e77d154a59c"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -185,6 +205,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_GamePlay_Shooting = m_GamePlay.FindAction("Shooting", throwIfNotFound: true);
         m_GamePlay_DropWeapon = m_GamePlay.FindAction("DropWeapon", throwIfNotFound: true);
         m_GamePlay_CollectWeapon = m_GamePlay.FindAction("CollectWeapon", throwIfNotFound: true);
+        m_GamePlay_Dash = m_GamePlay.FindAction("Dash", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -251,6 +272,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay_Shooting;
     private readonly InputAction m_GamePlay_DropWeapon;
     private readonly InputAction m_GamePlay_CollectWeapon;
+    private readonly InputAction m_GamePlay_Dash;
     public struct GamePlayActions
     {
         private @InputSystem m_Wrapper;
@@ -260,6 +282,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         public InputAction @Shooting => m_Wrapper.m_GamePlay_Shooting;
         public InputAction @DropWeapon => m_Wrapper.m_GamePlay_DropWeapon;
         public InputAction @CollectWeapon => m_Wrapper.m_GamePlay_CollectWeapon;
+        public InputAction @Dash => m_Wrapper.m_GamePlay_Dash;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -284,6 +307,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @CollectWeapon.started += instance.OnCollectWeapon;
             @CollectWeapon.performed += instance.OnCollectWeapon;
             @CollectWeapon.canceled += instance.OnCollectWeapon;
+            @Dash.started += instance.OnDash;
+            @Dash.performed += instance.OnDash;
+            @Dash.canceled += instance.OnDash;
         }
 
         private void UnregisterCallbacks(IGamePlayActions instance)
@@ -303,6 +329,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @CollectWeapon.started -= instance.OnCollectWeapon;
             @CollectWeapon.performed -= instance.OnCollectWeapon;
             @CollectWeapon.canceled -= instance.OnCollectWeapon;
+            @Dash.started -= instance.OnDash;
+            @Dash.performed -= instance.OnDash;
+            @Dash.canceled -= instance.OnDash;
         }
 
         public void RemoveCallbacks(IGamePlayActions instance)
@@ -327,5 +356,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         void OnShooting(InputAction.CallbackContext context);
         void OnDropWeapon(InputAction.CallbackContext context);
         void OnCollectWeapon(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
 }

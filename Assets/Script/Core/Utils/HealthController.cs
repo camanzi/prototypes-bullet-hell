@@ -17,8 +17,9 @@ public class HealthController : MonoBehaviour
     private float immunityTimer = 3f;
 
     public bool isPlayer = false;
-
-    private bool isImmune = false;
+    
+    [HideInInspector]
+    public bool isImmune = false;
 
     public void takeDamage(float damage) 
     {
