@@ -4,25 +4,19 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyMovement : AiComponent
 {
 
     private Transform target;
     private NavMeshAgent agent;
-    private RoomController roomController;
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
         agent = GetComponent<NavMeshAgent>();
-        roomController = GetComponentInParent<RoomController>();
 
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-    }
-
-    private void Start()
-    {
-        roomController.onStartEnemyAi += setTargetTransform;
     }
 
     private void Update()
@@ -33,12 +27,7 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        roomController.onStartEnemyAi -= setTargetTransform;
-    }
-
-    private void setTargetTransform() 
+    public override void activateAi() 
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
     }
