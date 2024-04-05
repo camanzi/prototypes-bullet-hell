@@ -13,6 +13,9 @@ public class RoomController : MonoBehaviour
     public delegate void closeDoorsEvent();
     public closeDoorsEvent onCloseDoorsEvent;
 
+    public delegate void startEnemyAi();
+    public closeDoorsEvent onStartEnemyAi;
+
     private void Start()
     {
         onOpenDoorsEvent?.Invoke();
@@ -32,6 +35,7 @@ public class RoomController : MonoBehaviour
         if (aliveEnemies > 0)
         {
             onCloseDoorsEvent?.Invoke();
+            onStartEnemyAi?.Invoke();
         }
         else { 
             onOpenDoorsEvent?.Invoke();

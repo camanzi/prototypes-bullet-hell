@@ -10,8 +10,6 @@ public class HealthController : MonoBehaviour
 
     public UnityAction deathEvent;
 
-    public static UnityAction myAction;
-
     [SerializeField]
     private float health = 3f;
 
@@ -41,7 +39,7 @@ public class HealthController : MonoBehaviour
             {
                 GameStateManager.Instance.CurrentGameState = GameStateManager.GameStates.GameOver;
             } else {
-                deathEvent();
+                deathEvent?.Invoke();
             }
         }
         yield return new WaitForSeconds(immunityTimer);

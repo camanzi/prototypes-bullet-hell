@@ -7,15 +7,22 @@ using UnityEngine.AI;
 public class EnemyMovement : MonoBehaviour
 {
 
-    [SerializeField] Transform target;
+    private Transform target;
+    private NavMeshAgent agent;
+    private RoomController roomController;
 
-    NavMeshAgent agent;
+    private void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        roomController = GetComponentInParent<RoomController>();
+
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+    }
 
     private void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
+        roomController.onStartEnemyAi += setTargetTransform;
     }
 
     private void Update()
@@ -24,6 +31,16 @@ public class EnemyMovement : MonoBehaviour
         {
             agent.SetDestination(target.position);
         }
+    }
+
+    private void OnDestroy()
+    {
+        roomController.onStartEnemyAi -= setTargetTransform;
+    }
+
+    private void setTargetTransform() 
+    {
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
 }
