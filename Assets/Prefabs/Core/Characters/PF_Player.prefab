@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3812623486254211554}
   m_Layer: 6
   m_Name: PF_Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,6 +105,7 @@ MonoBehaviour:
   dashBoost: 5
   dashDuration: 0.2
   dashCooldown: 1
+  invunerabilityLayer: Invunerability
 --- !u!114 &7074210027478054022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,8 +132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b50fb1827122c894c91bd942132a4130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
-  immunityTimer: 1.5
+  startingHealth: 3
+  immunityTimer: 1
   isPlayer: 1
   isImmune: 0
 --- !u!50 &4860885863093213814

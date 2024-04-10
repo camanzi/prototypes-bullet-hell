@@ -10,8 +10,9 @@ public class HealthController : MonoBehaviour
 
     public UnityAction deathEvent;
 
-    [SerializeField]
-    private float health = 3f;
+    public float startingHealth = 3f;
+    public float currentHealth { get { return _currentHealth; } set { _currentHealth = value; } }
+    private float _currentHealth;
 
     [SerializeField]
     private float immunityTimer = 3f;
@@ -20,6 +21,11 @@ public class HealthController : MonoBehaviour
     
     [HideInInspector]
     public bool isImmune = false;
+
+    private void Awake()
+    {
+        currentHealth = startingHealth;
+    }
 
     public void takeDamage(float damage) 
     {
@@ -32,8 +38,8 @@ public class HealthController : MonoBehaviour
     private IEnumerator loseHealthCoroutine(float damage)
     {
         isImmune = true;
-        health -= damage;
-        if (health <= 0)
+        _currentHealth -= damage;
+        if (_currentHealth <= 0)
         {
             Destroy(gameObject);
             if (isPlayer) 

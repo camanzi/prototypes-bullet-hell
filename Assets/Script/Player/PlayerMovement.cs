@@ -15,8 +15,9 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isDashing = false;
     public float dashBoost = 10;
-    public float dashDuration = .2f;
+    public float dashDuration = 0.2f;
     public float dashCooldown = 1f;
+    public string invunerabilityLayer;
 
     private void Awake()
     {
@@ -75,10 +76,20 @@ public class PlayerMovement : MonoBehaviour
         healthController.isImmune = true;
         canMove = false;
 
+        int previusLayer = gameObject.layer;
+        gameObject.layer = LayerMask.NameToLayer(invunerabilityLayer);
+
+        if (direction == Vector2.zero)
+        {
+            direction = Vector2.up;
+        }
+
         rb.AddForce(new Vector2(direction.x , direction.y) * (dashBoost / dashDuration), ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(dashDuration);
         canMove = true;
+
+        gameObject.layer = previusLayer;
 
         yield return new WaitForSeconds(dashCooldown - dashDuration);
         healthController.isImmune = false;

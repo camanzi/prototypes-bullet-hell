@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,4 +18,15 @@ public class GameManager : MonoBehaviour
     }
 
     private static GameManager _instance;
+
+    [HideInInspector]
+    public HealthController playerHealthController { get { return _playerHealthController; } }
+
+    private HealthController _playerHealthController;
+
+    private void Awake()
+    {
+        GameObject.FindGameObjectWithTag("Player").TryGetComponent<HealthController>(out _playerHealthController);
+        if (!_playerHealthController) { throw new System.Exception("No Player health controller found"); }
+    }
 }
