@@ -9,20 +9,18 @@ public class GSGameOver : IGameState
 
     public void OnStateEnter()
     {
-        InputManager.InputSystem.GamePlay.Enable();
+        InputManager.InputSystem.GamePlay.Disable();
         Time.timeScale = 0;
         t = 0;
     }
 
     public void OnStateExit()
-    {
-        Time.timeScale = 1;
-    }
+    {}
 
     public void OnStateUpdate()
     {
         t += Time.unscaledDeltaTime;
         if (t >= loadingTime) 
-            GameStateManager.Instance.CurrentGameState = GameStateManager.GameStates.Gameplay;
+            GameStateManager.Instance.CurrentGameState = GameStateManager.GameStates.Loading;
     }
 }

@@ -76,6 +76,7 @@ public class GameStateManager : MonoBehaviour
     {
         RegisterAllStates();
     }
+
     private void Start()
     {
         CurrentGameState = startinState;

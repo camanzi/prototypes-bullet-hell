@@ -8,6 +8,7 @@ public class UIGameplay : MonoBehaviour, IGameUI
 {
 
     public TextMeshProUGUI textField;
+
     public void Init()
     { }
 

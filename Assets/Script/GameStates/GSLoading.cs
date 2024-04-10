@@ -1,25 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GSLoading : IGameState
 {
-    private float t;
-    private const float loadingTime = 5;
     public void OnStateEnter()
     {
-        Time.timeScale = 0;
-        t = 0;
         //UIManager.Instance.ShowUI = UIManager.GameUI.Loading;
+        SceneManager.LoadScene("SampleScene");
+        GameStateManager.Instance.CurrentGameState = GameStateManager.GameStates.Gameplay;
     }
 
     public void OnStateExit()
-    {
-        Time.timeScale = 1;
-    }
+    {}
 
     public void OnStateUpdate()
-    {
-        t += Time.unscaledDeltaTime;
-        if (t >= loadingTime)
-            GameStateManager.Instance.CurrentGameState = GameStateManager.GameStates.Gameplay;
-    }
+    {}
 }
