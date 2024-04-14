@@ -25,7 +25,6 @@ public class ShooterController : MonoBehaviour
         if (useInputSystem) 
         { 
             InputManager.InputSystem.GamePlay.Shooting.performed += shoot;
-            InputManager.InputSystem.GamePlay.DropWeapon.performed += drop;
         }
         _bulletsLayer = gameObject.layer + 1;
     }
@@ -38,8 +37,6 @@ public class ShooterController : MonoBehaviour
     private void OnDestroy()
     {
         InputManager.InputSystem.GamePlay.Shooting.performed -= shoot;
-        InputManager.InputSystem.GamePlay.DropWeapon.performed -= drop;
-        drop();
     }
 
     public void shoot(float cooldown) 
