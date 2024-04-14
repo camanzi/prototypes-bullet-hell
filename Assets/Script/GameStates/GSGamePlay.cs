@@ -17,6 +17,5 @@ public class GSGamePlay : IGameState
     }
 
     public void OnStateUpdate()
-    {
-    }
+    {}
 }

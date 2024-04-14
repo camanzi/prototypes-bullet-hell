@@ -21,6 +21,8 @@ public class EnemyRotation : AiComponent
         {
             transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
         } else {
+            if (!target) { return; }
+
             Vector3 targetDirection = target.position;
             Vector3 enemyPosition = transform.position;
 

@@ -71,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1302159151
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileToShoot: {fileID: 7382828064213458209, guid: 6f8c2ffa054f7c04793c364e42d6b39d, type: 3}
-  collectableScript: {fileID: 0}
+  defaultCooldown: 0.25
 --- !u!1 &2150968576057188467
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,8 +170,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1302159151
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileToShoot: {fileID: 7382828064213458209, guid: 6f8c2ffa054f7c04793c364e42d6b39d, type: 3}
-  collectableScript: {fileID: 0}
+  defaultCooldown: 0.25
 --- !u!1 &2845884869919869313
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,8 +269,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1302159151
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileToShoot: {fileID: 7382828064213458209, guid: 6f8c2ffa054f7c04793c364e42d6b39d, type: 3}
-  collectableScript: {fileID: 0}
+  defaultCooldown: 0.25
 --- !u!1 &4270512901685842160
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,8 +465,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1302159151
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -492,4 +492,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileToShoot: {fileID: 7382828064213458209, guid: 6f8c2ffa054f7c04793c364e42d6b39d, type: 3}
-  collectableScript: {fileID: 0}
+  defaultCooldown: 0.25

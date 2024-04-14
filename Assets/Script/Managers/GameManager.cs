@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     private static GameManager _instance;
 
+    public GameObject PF_Player;
+
     [HideInInspector]
     public HealthController playerHealthController { get { return _playerHealthController; } }
 
@@ -27,13 +30,13 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += newSceneLoaded;
     }
 
-    private void Start()
+    private void newSceneLoaded(Scene current, LoadSceneMode mode)
     {
         GameObject.FindGameObjectWithTag("Player").TryGetComponent<HealthController>(out _playerHealthController);
         if (!_playerHealthController) { throw new System.Exception("No Player health controller found"); }
     }
 
-    
 }

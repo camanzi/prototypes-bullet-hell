@@ -1,26 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using static UIManager;
 public class GSGameOver : IGameState
 {
-
-    private float t;
-    private const float loadingTime = 5;
-
     public void OnStateEnter()
     {
         InputManager.InputSystem.GamePlay.Disable();
-        Time.timeScale = 0;
-        t = 0;
+        UIManager.Instance.ShowUI(new List<GameUI>() { GameUI.GameOver });
     }
 
     public void OnStateExit()
     {}
 
     public void OnStateUpdate()
-    {
-        t += Time.unscaledDeltaTime;
-        if (t >= loadingTime) 
-            GameStateManager.Instance.CurrentGameState = GameStateManager.GameStates.Loading;
-    }
+    {}
 }

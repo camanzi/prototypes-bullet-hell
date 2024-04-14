@@ -38,6 +38,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        InputManager.InputSystem.GamePlay.Dash.performed -= dash;
+    }
+
     private void FixedUpdate()
     {
         if (canMove)
