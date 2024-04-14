@@ -32,7 +32,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        rotate(InputManager.rotateInput());
+        if (canMove) 
+        {
+            rotate(Input.mousePosition);
+        }
     }
 
     private void FixedUpdate()
@@ -50,8 +53,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void rotate(Vector2 direction)
     {
-        direction = Input.mousePosition;
-
         Vector3 targetDirection = new Vector3(direction.x, direction.y, 0);
         Vector3 playerPosition = Camera.main.WorldToScreenPoint(transform.position);
 
