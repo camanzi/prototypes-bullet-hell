@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     public GameObject PF_Player;
 
     [HideInInspector]
+    public bool isPlayerAlive = true;
+
+    [HideInInspector]
     public HealthController playerHealthController { get { return _playerHealthController; } }
 
     private HealthController _playerHealthController;

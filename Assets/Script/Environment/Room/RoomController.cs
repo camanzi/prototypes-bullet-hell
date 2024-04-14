@@ -27,7 +27,7 @@ public class RoomController : MonoBehaviour
         {
             if (transform.GetChild(i).TryGetComponent<HealthController>(out HealthController enemyHealthController))
             {
-                if (!enemyHealthController.isPlayer)
+                if (!enemyHealthController.gameObject.CompareTag("Player"))
                     aliveEnemies++;
                 enemyHealthController.deathEvent += onEnemyDeath;
             }

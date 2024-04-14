@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class AiComponent : MonoBehaviour
 {
+    private float timerToActivate = 0.1f;
 
     protected bool isAiActive = false;
 
@@ -26,6 +27,12 @@ public abstract class AiComponent : MonoBehaviour
 
     public virtual void activateAi()
     {
+        StartCoroutine(AIActivationCoroutine());
+    }
+
+    private IEnumerator AIActivationCoroutine()
+    { 
+        yield return new WaitForSeconds(timerToActivate);
         isAiActive = true;
     }
 }

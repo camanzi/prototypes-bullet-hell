@@ -20,7 +20,7 @@ public class EnemyMovement : AiComponent
 
     private void Update()
     {
-        if (target)
+        if (target && isAiActive)
         {
             agent.SetDestination(target.position);
         }
@@ -28,6 +28,7 @@ public class EnemyMovement : AiComponent
 
     public override void activateAi() 
     {
+        base.activateAi();
         target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 

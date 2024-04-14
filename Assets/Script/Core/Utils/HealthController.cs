@@ -17,7 +17,10 @@ public class HealthController : MonoBehaviour
     [SerializeField]
     private float immunityTimer = 3f;
 
-    public bool isPlayer = false;
+    public bool isGameFinisher = false;
+
+    [SerializeField]
+    private bool isPlayer = false;
     
     [HideInInspector]
     public bool isImmune = false;
@@ -43,6 +46,10 @@ public class HealthController : MonoBehaviour
         {
             Destroy(gameObject);
             if (isPlayer) 
+            {
+                GameManager.Instance.isPlayerAlive = false;
+            }
+            if (isGameFinisher) 
             {
                 GameStateManager.Instance.CurrentGameState = GameStateManager.GameStates.GameOver;
             } else {
