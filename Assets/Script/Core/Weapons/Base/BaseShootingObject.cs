@@ -9,6 +9,8 @@ public class BaseShootingObject : MonoBehaviour, IShooting
     private BaseShootableObject projectileToShoot;
 
     private CollectableObject collectableScript;
+
+    [SerializeField]
     protected float defaultCooldown = 0.25f;
 
     protected bool isInCooldown = false;

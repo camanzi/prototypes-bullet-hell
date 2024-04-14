@@ -72,13 +72,9 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        RegisterAllStates();
-    }
-
     private void Start()
     {
+        RegisterAllStates();
         CurrentGameState = startinState;
     }
 

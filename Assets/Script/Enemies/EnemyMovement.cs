@@ -6,7 +6,6 @@ using UnityEngine.AI;
 
 public class EnemyMovement : AiComponent
 {
-
     private Transform target;
     private NavMeshAgent agent;
 

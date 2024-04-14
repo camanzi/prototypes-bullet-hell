@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour
     private Dictionary<GameUI, IGameUI> registeredUIs = new Dictionary<GameUI, IGameUI>();
 
     public Transform UiContainer;
-    private void Awake()
+    private void Start()
     {
         foreach (IGameUI enumeratedUi in UiContainer.GetComponentsInChildren<IGameUI>(true))
         {

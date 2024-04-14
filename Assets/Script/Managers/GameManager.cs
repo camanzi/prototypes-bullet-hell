@@ -26,7 +26,14 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
         GameObject.FindGameObjectWithTag("Player").TryGetComponent<HealthController>(out _playerHealthController);
         if (!_playerHealthController) { throw new System.Exception("No Player health controller found"); }
     }
+
+    
 }

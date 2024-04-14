@@ -8,7 +8,7 @@ public class GSLoading : IGameState
     public void OnStateEnter()
     {
         //UIManager.Instance.ShowUI = UIManager.GameUI.Loading;
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
         GameStateManager.Instance.CurrentGameState = GameStateManager.GameStates.Gameplay;
     }
 
