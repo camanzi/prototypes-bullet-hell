@@ -46,7 +46,7 @@ public class ShooterController : MonoBehaviour
 
     public void shoot(InputAction.CallbackContext context)
     {
-        shoot(0);
+        _equippedWeapon?.shoot(_equippedWeapon.GetTransform(), _bulletsLayer);
     }
 
     public void drop(InputAction.CallbackContext context)

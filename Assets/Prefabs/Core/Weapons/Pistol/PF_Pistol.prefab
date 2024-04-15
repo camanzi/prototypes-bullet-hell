@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileToShoot: {fileID: 7382828064213458209, guid: 6f8c2ffa054f7c04793c364e42d6b39d, type: 3}
-  defaultCooldown: 1
+  defaultCooldown: 0.5
 --- !u!58 &5359373057970591463
 CircleCollider2D:
   m_ObjectHideFlags: 0
