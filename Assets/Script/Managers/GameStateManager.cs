@@ -27,6 +27,7 @@ public class GameStateManager : MonoBehaviour
         Loading,
         Teardown,
         Gameplay,
+        MainMenu,
         GameOver,
     }
     private readonly Dictionary<GameStates, IGameState> registeredGameStates = new();
@@ -35,6 +36,7 @@ public class GameStateManager : MonoBehaviour
         RegisterState(GameStates.Loading, new GSLoading());
         RegisterState(GameStates.Teardown, new GSTeardown());
         RegisterState(GameStates.Gameplay, new GSGamePlay());
+        RegisterState(GameStates.MainMenu, new GSMainMenu());
         RegisterState(GameStates.GameOver, new GSGameOver());
     }
     private void RegisterState(GameStates gstate, IGameState state)

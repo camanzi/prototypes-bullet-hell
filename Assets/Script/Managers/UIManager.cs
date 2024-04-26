@@ -24,6 +24,7 @@ public class UIManager : MonoBehaviour
         NONE,
         Loading,
         Teardown,
+        MainMenu,
         Gameplay,
         GameOver,
     }
