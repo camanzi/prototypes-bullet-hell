@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MenuVoice : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler
+public class MenuVoice : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField]
     private Color hoverFontColor = Color.white;
@@ -32,10 +32,5 @@ public class MenuVoice : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         selectorIconContainer?.SetActive(false);
         text.color = previusColor;
-    }
-
-    public void OnSelect(BaseEventData eventData)
-    {
-        Debug.Log("Pressed" + eventData);
     }
 }

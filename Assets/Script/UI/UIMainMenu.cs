@@ -18,4 +18,16 @@ public class UIMainMenu: MonoBehaviour, IGameUI
     {
         return GameUI.MainMenu;
     }
+    public void OnPlayClick()
+    {
+        GameStateManager.Instance.CurrentGameState = GameStateManager.GameStates.Gameplay;
+    }
+    public void OnOptionClick() 
+    {
+        UIManager.Instance.ShowUI((new List<GameUI>() { GameUI.Options }));
+    }
+    public void OnExitClick()
+    {
+        Application.Quit();
+    }
 }
