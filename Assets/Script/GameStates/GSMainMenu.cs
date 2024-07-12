@@ -7,6 +7,7 @@ public class GSMainMenu : IGameState
 {
     public void OnStateEnter()
     {
+        Time.timeScale = 0f;
         InputManager.InputSystem.GamePlay.Disable();
         UIManager.Instance.ShowUI(new List<GameUI>() { GameUI.MainMenu });
     }

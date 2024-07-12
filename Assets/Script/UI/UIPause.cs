@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UIManager;
 
-public class UIMainMenu: MonoBehaviour, IGameUI
+public class UIPause: MonoBehaviour, IGameUI
 {
     public void Init()
     { }
@@ -16,11 +16,11 @@ public class UIMainMenu: MonoBehaviour, IGameUI
     }
     public GameUI GetUIType()
     {
-        return GameUI.MainMenu;
+        return GameUI.Pause;
     }
-    public void OnPlayClick()
+    public void OnResumeClick()
     {
-        GameManager.Instance.ResetScene();
+        GameStateManager.Instance.CurrentGameState = GameStateManager.GameStates.Gameplay;
     }
     public void OnOptionClick() 
     {
@@ -28,6 +28,6 @@ public class UIMainMenu: MonoBehaviour, IGameUI
     }
     public void OnExitClick()
     {
-        Application.Quit();
+        UIManager.Instance.ShowUI((new List<GameUI>() { GameUI.MainMenu }));
     }
 }

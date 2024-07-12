@@ -41,5 +41,16 @@ public class GameManager : MonoBehaviour
         GameObject.FindGameObjectWithTag("Player").TryGetComponent<HealthController>(out _playerHealthController);
         if (!_playerHealthController) { throw new System.Exception("No Player health controller found"); }
     }
-
+    public void ResetScene()
+    {
+        SceneManager.LoadScene("GameScene");
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player)
+        {
+            Destroy(player);
+        }
+        Instantiate(PF_Player, Vector3.zero, Quaternion.identity);
+        isPlayerAlive = true;
+        GameStateManager.Instance.CurrentGameState = GameStateManager.GameStates.Gameplay;
+    }
 }

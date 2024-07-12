@@ -12,25 +12,33 @@ public class MenuVoice : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     [SerializeField]
     private GameObject selectorIconContainer;
 
-    private Color previusColor;
+    private Color startingColor;
     private TextMeshProUGUI text;
 
     private void Awake()
     {
         text = GetComponentInChildren<TextMeshProUGUI>();
         selectorIconContainer?.SetActive(false);
+        startingColor = text.color;
     }
-
+    private void OnDisable()
+    {
+        ResetMenuVoice();
+    }
     public void OnPointerEnter(PointerEventData eventData)
     {
         selectorIconContainer?.SetActive(true);
-        previusColor = text.color;
         text.color = hoverFontColor;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        ResetMenuVoice();
+    }
+
+    private void ResetMenuVoice() 
+    {
         selectorIconContainer?.SetActive(false);
-        text.color = previusColor;
+        text.color = startingColor;
     }
 }

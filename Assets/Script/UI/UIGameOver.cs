@@ -26,17 +26,8 @@ public class UIGameOver : MonoBehaviour, IGameUI
     {
         return GameUI.GameOver;
     }
-
-    public void resetScene()
+    public void ReturnToMainMenu() 
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player) 
-        {
-            Destroy(player);
-        }
-        GameObject.Instantiate(GameManager.Instance.PF_Player, Vector3.zero, Quaternion.identity);
-        GameManager.Instance.isPlayerAlive = true;
-        GameStateManager.Instance.CurrentGameState = GameStateManager.GameStates.Gameplay;
+        GameStateManager.Instance.CurrentGameState = GameStateManager.GameStates.MainMenu;
     }
 }
