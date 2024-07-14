@@ -15,7 +15,8 @@ public class UIGameOver : MonoBehaviour, IGameUI
 
     private void OnEnable()
     {
-        gameResult.text = GameManager.Instance.isPlayerAlive ? "Victory!" : "Lose!";
+        gameResult.text = GameManager.Instance.isPlayerAlive ? "Escaped!" : "You Died";
+        gameResult.color = GameManager.Instance.isPlayerAlive ? new Color(191, 185, 39) : new Color(99, 00, 00);
     }
 
     public void SetActive(bool active)
@@ -26,8 +27,12 @@ public class UIGameOver : MonoBehaviour, IGameUI
     {
         return GameUI.GameOver;
     }
-    public void ReturnToMainMenu() 
+    public void OnRestartClick()
     {
-        GameStateManager.Instance.CurrentGameState = GameStateManager.GameStates.MainMenu;
+        GameManager.Instance.ResetScene();
+    }
+    public void OnExitClick()
+    {
+        UIManager.Instance.ShowUI((new List<GameUI>() { GameUI.MainMenu }));
     }
 }

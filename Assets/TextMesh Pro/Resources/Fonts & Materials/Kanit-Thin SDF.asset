@@ -73,9 +73,9 @@ Material:
     - _OutlineWidth: 0
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 1
-    - _ScaleRatioB: 1
-    - _ScaleRatioC: 1
+    - _ScaleRatioA: 0.8333333
+    - _ScaleRatioB: 0.6770833
+    - _ScaleRatioC: 0.6770833
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
@@ -120,9 +120,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: Kanit-Thin SDF
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: -1976670786
   material: {fileID: -7109674285365037661}
-  materialHashCode: 0
+  materialHashCode: -185046050
   m_Version: 1.1.0
   m_SourceFontFileGUID: a6b2173ce5d8f084980d215d05877246
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: a6b2173ce5d8f084980d215d05877246, type: 3}
