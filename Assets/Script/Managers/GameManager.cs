@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,25 +23,19 @@ public class GameManager : MonoBehaviour
 
     public GameObject PF_Player;
 
-    [HideInInspector]
-    public bool isPlayerAlive = true;
-
-    [HideInInspector]
-    public HealthController playerHealthController { get { return _playerHealthController; } }
-
+    [HideInInspector] public bool isPlayerAlive = true;
+    [HideInInspector] public HealthController playerHealthController { get { return _playerHealthController; } }
     private HealthController _playerHealthController;
 
+    public event Action<HealthController> startBossFightEvent;
+
+    public HealthController bossHealthController { get { return _bossHealthController; } }
+    private HealthController _bossHealthController;
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        SceneManager.sceneLoaded += newSceneLoaded;
     }
 
-    private void newSceneLoaded(Scene current, LoadSceneMode mode)
-    {
-        GameObject.FindGameObjectWithTag("Player").TryGetComponent<HealthController>(out _playerHealthController);
-        if (!_playerHealthController) { throw new System.Exception("No Player health controller found"); }
-    }
     public void ResetScene()
     {
         SceneManager.LoadScene("GameScene");
@@ -49,8 +44,17 @@ public class GameManager : MonoBehaviour
         {
             Destroy(player);
         }
-        Instantiate(PF_Player, Vector3.zero, Quaternion.identity);
+        GameObject playerInstance = Instantiate(PF_Player, Vector3.zero, Quaternion.identity);
+        playerInstance.TryGetComponent<HealthController>(out _playerHealthController);
         isPlayerAlive = true;
         GameStateManager.Instance.CurrentGameState = GameStateManager.GameStates.Gameplay;
+    }
+    public void SetBossHealthController(HealthController bossHealthController) 
+    {
+        _bossHealthController = bossHealthController;
+        if (bossHealthController) 
+        {
+            startBossFightEvent?.Invoke(bossHealthController);
+        }
     }
 }

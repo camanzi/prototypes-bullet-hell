@@ -1,36 +1,46 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class HealthController : MonoBehaviour
 {
 
-    public UnityAction deathEvent;
+    public event Action deathEvent;
+    public event Action damageEvent;
 
-    public float startingHealth = 3f;
-    public float currentHealth { get { return _currentHealth; } set { _currentHealth = value; } }
-    private float _currentHealth;
+    public int startingHealth = 3;
+    public int currentHealth { get { return _currentHealth; } set { _currentHealth = value; } }
+    private int _currentHealth;
 
     [SerializeField]
     private float immunityTimer = 3f;
-
     public bool isGameFinisher = false;
 
-    [SerializeField]
-    private bool isPlayer = false;
-    
-    [HideInInspector]
-    public bool isImmune = false;
+    [SerializeField] private bool isPlayer = false;
+    [HideInInspector] public bool isImmune = false;
+    [SerializeField] private Image currentHealthBar;
 
     private void Awake()
     {
         currentHealth = startingHealth;
     }
-
-    public void takeDamage(float damage) 
+    private void Update()
+    {
+        if (currentHealthBar) 
+        {
+            currentHealthBar.rectTransform.localScale = new Vector3((float) currentHealth / (float) startingHealth, currentHealthBar.rectTransform.localScale.y, currentHealthBar.rectTransform.localScale.z);
+        }   
+    }
+    public void SetCurrentHealthBar(Image healthBar) 
+    {
+        currentHealthBar = healthBar;
+    }
+    public void takeDamage(int damage) 
     {
         if (!isImmune)
         { 
@@ -38,8 +48,9 @@ public class HealthController : MonoBehaviour
         }
     }
 
-    private IEnumerator loseHealthCoroutine(float damage)
+    private IEnumerator loseHealthCoroutine(int damage)
     {
+        damageEvent?.Invoke();
         isImmune = true;
         _currentHealth -= damage;
         if (_currentHealth <= 0)

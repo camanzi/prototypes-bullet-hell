@@ -29,6 +29,8 @@ public class RoomController : MonoBehaviour
             {
                 if (!enemyHealthController.gameObject.CompareTag("Player"))
                     aliveEnemies++;
+                if (transform.GetChild(i).CompareTag("Boss"))
+                    GameManager.Instance.SetBossHealthController(enemyHealthController);
                 enemyHealthController.deathEvent += onEnemyDeath;
             }
         }

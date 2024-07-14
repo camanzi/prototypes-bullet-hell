@@ -9,7 +9,7 @@ public class DamageOnTouch : MonoBehaviour
     private string tagToDamage = "Player";
 
     [SerializeField]
-    private float damage = 0.5f;
+    private int damage = 1;
 
    public void OnCollisionEnter2D(Collision2D collision)
     {

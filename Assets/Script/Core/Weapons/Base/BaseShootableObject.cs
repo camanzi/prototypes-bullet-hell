@@ -7,7 +7,7 @@ public class BaseShootableObject : MonoBehaviour, IShootable
 
     public float speed = 20f;
 
-    public float damage = 0.5f;
+    public int damage = 1;
 
     private void Update()
     {
