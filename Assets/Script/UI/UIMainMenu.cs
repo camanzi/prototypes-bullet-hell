@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -14,6 +15,10 @@ public class UIMainMenu: MonoBehaviour, IGameUI
     {
         gameObject.SetActive(active);
     }
+    public void SetActive(bool active, Action action = null)
+    {
+        SetActive(active);
+    }
     public GameUI GetUIType()
     {
         return GameUI.MainMenu;
@@ -24,7 +29,7 @@ public class UIMainMenu: MonoBehaviour, IGameUI
     }
     public void OnOptionClick() 
     {
-        UIManager.Instance.ShowUI((new List<GameUI>() { GameUI.Options }));
+        UIManager.Instance.ShowUI((new List<GameUI>() { GameUI.Options }), true);
     }
     public void OnExitClick()
     {

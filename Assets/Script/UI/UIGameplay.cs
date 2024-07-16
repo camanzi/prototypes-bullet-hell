@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -38,6 +39,10 @@ public class UIGameplay : MonoBehaviour, IGameUI
     public void SetActive(bool active) 
     {
         gameObject.SetActive(active);
+    }
+    public void SetActive(bool active, Action action = null)
+    {
+        SetActive(active);
     }
     public GameUI GetUIType() 
     {

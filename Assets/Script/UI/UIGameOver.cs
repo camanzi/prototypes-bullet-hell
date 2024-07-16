@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -34,5 +35,10 @@ public class UIGameOver : MonoBehaviour, IGameUI
     public void OnExitClick()
     {
         UIManager.Instance.ShowUI((new List<GameUI>() { GameUI.MainMenu }));
+    }
+
+    public void SetActive(bool active, Action action = null)
+    {
+        SetActive(active);
     }
 }

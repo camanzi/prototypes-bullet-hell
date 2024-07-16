@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,6 +32,8 @@ public class UIManager : MonoBehaviour
         Pause
     }
     private IGameUI currentUI;
+    private List<GameUI> lastUIActive = new List<GameUI>() { GameUI.NONE };
+
     private Dictionary<GameUI, IGameUI> registeredUIs = new Dictionary<GameUI, IGameUI>();
 
     public Transform UiContainer;
@@ -50,12 +53,20 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void ShowUI(List<GameUI> UITypes)
+    public void ShowUI(List<GameUI> UITypes, bool canReturnToPrevius = false)
     {
+        Action returnAction = null;
+        if (canReturnToPrevius)
+        {
+            // Trick del c***o per evitare la reference
+            List<int> enumValues = lastUIActive.ConvertAll<int>(ui => (int)ui);
+            returnAction = () => { ShowUI(enumValues.ConvertAll<GameUI>(ui => (GameUI)ui)); };
+        }
         foreach (KeyValuePair<GameUI, IGameUI> keyValue in registeredUIs)
         {
-            keyValue.Value.SetActive(UITypes.Contains(keyValue.Key));
+            keyValue.Value.SetActive(UITypes.Contains(keyValue.Key), returnAction);
         }
+        lastUIActive = UITypes;
     }
     #endregion
 }
