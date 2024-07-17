@@ -17,8 +17,7 @@ public class HealthController : MonoBehaviour
     public int currentHealth { get { return _currentHealth; } set { _currentHealth = value; } }
     private int _currentHealth;
 
-    [SerializeField]
-    private float immunityTimer = 3f;
+    [SerializeField] private float immunityTimer = 3f;
     public bool isGameFinisher = false;
 
     [SerializeField] private bool isPlayer = false;

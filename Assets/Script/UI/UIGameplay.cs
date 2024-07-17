@@ -25,11 +25,16 @@ public class UIGameplay : MonoBehaviour, IGameUI
     {
         GameManager.Instance.playerHealthController.damageEvent += ShowDamageTaken;
         GameManager.Instance.startBossFightEvent += ShowBossBar;
+        GameManager.Instance.stopBossFightEvent += HideBossBar;
     }
     private void OnDisable()
     {
         GameManager.Instance.playerHealthController.damageEvent -= ShowDamageTaken;
         GameManager.Instance.startBossFightEvent -= ShowBossBar;
+    }
+    private void OnDestroy()
+    {
+        GameManager.Instance.stopBossFightEvent -= HideBossBar;
     }
     private void Update()
     {
@@ -86,5 +91,9 @@ public class UIGameplay : MonoBehaviour, IGameUI
     {
         bossBar.SetActive(true);
         bossHealthController.SetCurrentHealthBar(bossHealthBar.GetComponent<Image>());
+    }
+    private void HideBossBar()
+    {
+        bossBar.SetActive(false);
     }
 }

@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     private HealthController _playerHealthController;
 
     public event Action<HealthController> startBossFightEvent;
+    public event Action stopBossFightEvent;
 
     public HealthController bossHealthController { get { return _bossHealthController; } }
     private HealthController _bossHealthController;
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
     public void ResetScene()
     {
         SceneManager.LoadScene("GameScene");
+        SetBossHealthController(null);
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player)
         {
@@ -52,9 +54,12 @@ public class GameManager : MonoBehaviour
     public void SetBossHealthController(HealthController bossHealthController) 
     {
         _bossHealthController = bossHealthController;
-        if (bossHealthController) 
+        if (bossHealthController)
         {
             startBossFightEvent?.Invoke(bossHealthController);
+        }
+        else {
+            stopBossFightEvent?.Invoke();
         }
     }
 }
